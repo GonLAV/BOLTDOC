@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLTDOC - File Search & Report Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ BOLTDOC</h1>
+            <p class="subtitle">File Search & Report Generator</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <div class="card">
+                    <h2>Search Configuration</h2>
+                    <form id="searchForm">
+                        <div class="form-group">
+                            <label for="folderPath">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                                Folder Path
+                            </label>
+                            <input 
+                                type="text" 
+                                id="folderPath" 
+                                name="folderPath" 
+                                placeholder="e.g., /path/to/logs or C:\logs" 
+                                required
+                            >
+                            <small>Enter the absolute path to the folder containing files to search</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="searchStrings">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                                Search Strings
+                            </label>
+                            <input 
+                                type="text" 
+                                id="searchStrings" 
+                                name="searchStrings" 
+                                placeholder="e.g., ERROR, WARNING, CRITICAL" 
+                                required
+                            >
+                            <small>Enter search terms separated by commas</small>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                                Search Files
+                            </button>
+                            <button type="button" id="generateReportBtn" class="btn btn-secondary" disabled>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="12" y1="18" x2="12" y2="12"/>
+                                    <line x1="9" y1="15" x2="15" y2="15"/>
+                                </svg>
+                                Generate Report
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Searching files...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+            <div id="successMessage" class="success-message hidden"></div>
+
+            <div id="resultsSection" class="results-section hidden">
+                <div class="card">
+                    <div class="results-header">
+                        <h2>Search Results</h2>
+                        <div id="resultsStats" class="stats"></div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Search String</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 BOLTDOC. Modern File Search & Reporting Tool.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
