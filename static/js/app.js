@@ -14,7 +14,7 @@ const generateReportBtn = document.getElementById('generateReportBtn');
 
 // Event listeners
 searchForm.addEventListener('submit', handleSearch);
-generateReportBtn.addEventListener('submit', handleGenerateReport);
+generateReportBtn.addEventListener('click', handleGenerateReport);
 
 // Handle search form submission
 async function handleSearch(event) {
@@ -175,6 +175,3 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
-
-// Add click event to generate report button
-generateReportBtn.addEventListener('click', handleGenerateReport);

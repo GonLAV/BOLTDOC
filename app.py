@@ -90,15 +90,12 @@ def generate_report():
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         report_filename = f'report_{timestamp}.html'
         
-        # Temporarily change to generate the report
-        original_cwd = os.getcwd()
-        try:
-            generate_html_report(results, folder_path)
-            # Move the report to a timestamped name
-            if os.path.exists('report.html'):
-                os.rename('report.html', report_filename)
-        finally:
-            os.chdir(original_cwd)
+        # Generate the report
+        generate_html_report(results, folder_path)
+        
+        # Rename to timestamped filename
+        if os.path.exists('report.html'):
+            os.rename('report.html', report_filename)
         
         return jsonify({
             'success': True,
