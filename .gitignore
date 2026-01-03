@@ -6,7 +6,7 @@ __pycache__/
 env/
 venv/
 ENV/
-*.html
+report*.html
 uploads/
 instance/
 .flask_session/
